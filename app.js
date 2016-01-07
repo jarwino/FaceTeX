@@ -83,7 +83,7 @@ login({
                 //api.sendMessage("TEST BOT: " + event.body, event.threadID);
                 break;
             case "event":
-                //console.log(event);
+                
                 break;
         }
     });
