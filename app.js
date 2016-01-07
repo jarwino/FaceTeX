@@ -1,17 +1,3 @@
-var express = require('express');
-var app     = express();
-
-app.set('port', (process.env.PORT || 5000));
-
-//For avoidong Heroku $PORT error
-app.get('/', function(request, response) {
-    var result = 'App is running'
-    response.send(result);
-}).listen(app.get('port'), function() {
-    console.log('App is running, server is listening on port ', app.get('port'));
-});
-
-
 var config = require('./config.json');
 var fs = require('fs');
 var login = require('facebook-chat-api');
@@ -40,19 +26,24 @@ function extractLatex(inputString) {
 
 function populateResults(inputString) {
     var resultArray = inputString.split("");
+    var curr;
 
     var inMiddle = false;
 
     for (var i = 0; i < resultArray.length; i++) {
         if (resultArray[i] === '$') {
-
+            
             if (!inMiddle) {
-                results.push("");
+                curr = "";
+            } else {
+                results.push(curr);
             }
-            inMiddle = !inMiddle;
+
+            inMiddle = !inMiddle; //flip switch
+
         } else {
             if (inMiddle) {
-                results[results.length - 1] += resultArray[i];
+                curr += resultArray[i];
             }
         }
 
