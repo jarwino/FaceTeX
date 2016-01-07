@@ -4,7 +4,19 @@ var login = require('facebook-chat-api');
 var mathmode = require('mathmode');
 var async = require('async');
 var results = [];
-var options = {packages: ["amsmath", "amssymb"]}
+var options = {packages: ["amsmath", "amssymb"]};
+
+http.createServer(function (req, res) {
+  console.log("ping");
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end("");
+}).listen(process.env.PORT || 5000);
+
+setInterval(function() {
+  http.get("http://facetex.herokuapp.com", function(res) {
+    console.log("pong");
+  });
+}, 300000); 
 
 function isValidLatex(inputString) {
     return (inputString.slice(0, 1) === '$' &&
