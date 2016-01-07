@@ -3,6 +3,7 @@ var fs = require('fs');
 var login = require('facebook-chat-api');
 var mathmode = require('mathmode');
 var async = require('async');
+var http = require('http');
 
 
 var results = [];
@@ -10,7 +11,7 @@ var options = {
     packages: ["amsmath", "amssymb"]
 };
 
-
+http.createServer(function (request, response) {
 
 
 function isValidLatex(inputString) {
@@ -100,3 +101,7 @@ login({
         }
     });
 });
+
+}).listen(process.env.PORT || 5000);
+
+ console.log('Server running at http://127.0.0.1:5000/');
