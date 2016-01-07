@@ -8,6 +8,8 @@ var results = [];
 var options = {packages: ["amsmath", "amssymb"]};
 var http = require('http');
 
+var port = process.env.PORT || 5000;
+
 http.createServer(function (req, res) {
   console.log("ping");
   res.writeHead(200, {'Content-Type': 'text/plain'});
