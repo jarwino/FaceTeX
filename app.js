@@ -3,6 +3,8 @@ var fs = require('fs');
 var login = require('facebook-chat-api');
 var mathmode = require('mathmode');
 var async = require('async');
+var results = [];
+var options = {packages: ["amsmath", "amssymb"]}
 
 function isValidLatex(inputString) {
     return (inputString.slice(0, 1) === '$' &&
@@ -13,6 +15,28 @@ function isValidLatex(inputString) {
 function extractLatex(inputString) {
     var length = inputString.length;
     return inputString.slice(1, length - 1);
+}
+
+function populateResults(inputString) {
+    var resultArray = inputString.split("");
+
+    var inMiddle = false;
+
+    for (var i = 0; i < resultArray.length; i++) {
+        if (resultArray[i] === '$') {
+
+            if (!inMiddle) {
+                results.push("");
+            }
+            inMiddle = !inMiddle;
+        } else {
+            if (inMiddle) {
+                results[results.length - 1] += resultArray[i];
+            }
+        }
+
+    }
+
 }
 
 login({
@@ -28,26 +52,31 @@ login({
 
         switch (event.type) {
             case "message":
-                console.log(isValidLatex(event.body));
-                if (isValidLatex(event.body)) {
+                //console.log(isValidLatex(event.body));
+                populateResults(event.body);
 
-                    var inputString = extractLatex(event.body);
+
+                console.log(results);
+
+                for (var i = 0; i < results.length; i++) {
+
                     var outputFile = fs.createWriteStream('output.png');
-                    
+
                     outputFile.on('finish', function() {
                         var msg = {
                             attachment: fs.createReadStream('output.png')
                         };
-                        api.sendMessage(msg, event.threadID);
+                        api.sendMessage(msg, event.threadID, function(err, messageInfo) {
+                            
+                        });
                     });
 
-                    var options = {
-                        packages: ["amsmath", "amssymb"]
-                    }
-
-                    mathmode(inputString, options).pipe(outputFile);
+                    mathmode(results[i], options).pipe(outputFile);
 
                 }
+
+                results = [];
+
                 api.markAsRead(event.threadID, function(err) {
                     if (err) console.log(err);
                 });
