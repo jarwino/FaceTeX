@@ -1,26 +1,30 @@
-var http = require('http');
+var express = require('express');
+var app     = express();
+
+app.set('port', (process.env.PORT || 5000));
+
+//For avoidong Heroku $PORT error
+app.get('/', function(request, response) {
+    var result = 'App is running'
+    response.send(result);
+}).listen(app.get('port'), function() {
+    console.log('App is running, server is listening on port ', app.get('port'));
+});
+
+
 var config = require('./config.json');
 var fs = require('fs');
 var login = require('facebook-chat-api');
 var mathmode = require('mathmode');
 var async = require('async');
 
-http.createServer(function (req, res) {
-  console.log("ping");
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end("");
-}).listen(process.env.PORT || 5000);
-
-setInterval(function() {
-  http.get("https://facetex.herokuapp.com", function(res) {
-    console.log("pong");
-  });
-}, 300000); 
 
 var results = [];
 var options = {
     packages: ["amsmath", "amssymb"]
 };
+
+
 
 
 function isValidLatex(inputString) {
