@@ -4,11 +4,6 @@ var fs = require('fs');
 var login = require('facebook-chat-api');
 var mathmode = require('mathmode');
 var async = require('async');
-var results = [];
-var options = {packages: ["amsmath", "amssymb"]};
-var http = require('http');
-
-var port = process.env.PORT || 5000;
 
 http.createServer(function (req, res) {
   console.log("ping");
@@ -17,10 +12,16 @@ http.createServer(function (req, res) {
 }).listen(process.env.PORT || 5000);
 
 setInterval(function() {
-  http.get("http://facetex.herokuapp.com", function(res) {
+  http.get("https://facetex.herokuapp.com", function(res) {
     console.log("pong");
   });
 }, 300000); 
+
+var results = [];
+var options = {
+    packages: ["amsmath", "amssymb"]
+};
+
 
 function isValidLatex(inputString) {
     return (inputString.slice(0, 1) === '$' &&
@@ -83,7 +84,7 @@ login({
                             attachment: fs.createReadStream('output.png')
                         };
                         api.sendMessage(msg, event.threadID, function(err, messageInfo) {
-                            
+
                         });
                     });
 
@@ -99,7 +100,7 @@ login({
                 //api.sendMessage("TEST BOT: " + event.body, event.threadID);
                 break;
             case "event":
-                
+
                 break;
         }
     });
