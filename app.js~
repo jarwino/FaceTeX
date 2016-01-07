@@ -22,7 +22,7 @@ http.createServer(function(req, res) {
 }).listen(process.env.PORT || 5000);
 
 setInterval(function() {
-  http.get("http://facetex.herokuapp.com", function(res) {
+  http.get("http://peaceful-tor-3172.herokuapp.com", function(res) {
     console.log("pong");
   });
 }, 300000);
