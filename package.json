@@ -1,0 +1,33 @@
+{
+  "name": "face-tex",
+  "version": "1.0.0",
+  "engines": {
+    "node": "4.2.1"
+  },
+  "description": "A tool that lets you communicate in LaTeX to your friends over Facebook chat.",
+  "main": "app.js",
+  "dependencies": {
+    "mathmode": "^0.0.4",
+    "async": "^1.5.1",
+    "facebook-chat-api": "^1.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jarwino/FaceTeX.git"
+  },
+  "keywords": [
+    "latex",
+    "facebook",
+    "chat"
+  ],
+  "author": "Jared Winograd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jarwino/FaceTeX/issues"
+  },
+  "homepage": "https://github.com/jarwino/FaceTeX#readme"
+}
