@@ -1,3 +1,4 @@
+var http = require('http');
 var config = require('./config.json');
 var fs = require('fs');
 var login = require('facebook-chat-api');
@@ -5,6 +6,7 @@ var mathmode = require('mathmode');
 var async = require('async');
 var results = [];
 var options = {packages: ["amsmath", "amssymb"]};
+var http = require('http');
 
 http.createServer(function (req, res) {
   console.log("ping");
