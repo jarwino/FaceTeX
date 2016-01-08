@@ -62,8 +62,8 @@ function populateResults(inputString) {
 }
 
 login({
-  email: config.username,
-  password: config.password
+  email: process.env.FB_USERNAME || config.username,
+  password: process.env.FB_PASSWORD || config.password
 }, function callback(err, api) {
   if (err) return console.error(err);
   api.setOptions({
