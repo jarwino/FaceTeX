@@ -21,12 +21,6 @@ http.createServer(function(req, res) {
   res.end("");
 }).listen(process.env.PORT || 5000);
 
-setInterval(function() {
-  http.get("http://facetex.herokuapp.com", function(res) {
-    console.log("pong");
-  });
-}, 300000);
-
 
 function isValidLatex(inputString) {
   return (inputString.slice(0, 1) === '$' &&
