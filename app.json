@@ -1,0 +1,21 @@
+{
+  "name": "FaceTeX",
+  "description": "A tool that lets you communicate in LaTeX to your friends over Facebook chat.",
+  "keywords": [
+    "latex",
+    "facebook",
+    "chat"
+  ],
+  "website": "https://github.com/jarwino/FaceTeX",
+  "repository": "https://github.com/jarwino/FaceTeX",
+  "env": {
+    "FB_USERNAME": {
+      "description": "Username or email address of the bot.",
+      "generator": "example@email.com"
+    },
+    "FB_PASSWORD": {
+      "description": "Password for the bot.",
+      "value": "verycomplicatedpassword"
+    }
+  }
+}
