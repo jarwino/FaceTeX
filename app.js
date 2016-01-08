@@ -72,8 +72,8 @@ login({
   var interpret = api.listen(function(err, event) {
     if (err) return console.error(err);
 
-    switch (event.type) {
-      case "message":
+    if (event.type === "message") {
+
         //console.log(isValidLatex(event.body));
         populateResults(event.body);
 
@@ -128,9 +128,6 @@ login({
         api.markAsRead(event.threadID, function(err) {
           if (err) console.log(err);
         });
-        break;
-      case "event":
-        break;
     }
   });
 });
