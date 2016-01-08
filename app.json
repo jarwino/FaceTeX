@@ -11,7 +11,7 @@
   "env": {
     "FB_USERNAME": {
       "description": "Username or email address of the bot.",
-      "generator": "example@email.com"
+      "value": "example@email.com"
     },
     "FB_PASSWORD": {
       "description": "Password for the bot.",

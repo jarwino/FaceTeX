@@ -23,9 +23,9 @@ http.createServer(function(req, res) {
 
 
 function isValidLatex(inputString) {
-  return (inputString.slice(0, 1) === '$' &&
-    inputString.slice(-1) === '$' &&
-    inputString !== '$');
+  return (inputString.length !== 1 &&
+    inputString.slice(0, 1) === '$' &&
+    inputString.slice(-1) === '$');
 }
 
 function extractLatex(inputString) {
@@ -68,22 +68,23 @@ login({
 
     if (event.type === "message") {
 
-        //console.log(isValidLatex(event.body));
+        // Early return if not a valid text string
+        if (!isValidLatex(event.body)) {
+          return;
+        }
         populateResults(event.body);
-
 
         console.log(results);
 
         mjAPI.start();
-
         mjAPI.config({
-            MathJax: {
-              SVG: {
-                font: "TeX"
-              }
-            },
-            extensions: ""
-          });
+          MathJax: {
+            SVG: {
+              font: "TeX"
+            }
+          },
+          extensions: ""
+        });
 
         for (var i = 0; i < results.length; i++) {
 
@@ -95,22 +96,25 @@ login({
             ex: 50,
             width: 100
           }, function(data) {
-            console.log(data);
+            //console.log(data);
             if (!data.errors) {
 
               var base64Data = data.png.replace(/^data:image\/png;base64,/, "");
+              var filename = 'file' + i + '.png';
 
-              fs.writeFile('file' + i + '.png', base64Data, 'base64', function(err) {
+              fs.writeFile(filename, base64Data, 'base64', function(err) {
                 if (err) {
                   throw err;
                 } else {
                   var msg = {
-                    attachment: fs.createReadStream('file' + i + '.png')
+                    attachment: fs.createReadStream(filename)
                   };
-                  console.log('hey');
+                  console.log('writing image');
                   api.sendMessage(msg, event.threadID);
                 }
-
+                fs.unlink(filename, function(err) {
+                  console.log("deleting temp file: " + filename);
+                });
               });
             }
           });
@@ -122,6 +126,6 @@ login({
         api.markAsRead(event.threadID, function(err) {
           if (err) console.log(err);
         });
-    }
-  });
+      }
+    });
 });
