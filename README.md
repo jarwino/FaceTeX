@@ -12,7 +12,7 @@ If you want to do this with your own Facebook bot, please fork the repository an
 
 #### Thank you to `npm facebook-chat-api` and `npm install mathmode` for making the majority of this happen!
 
-[travis-img]: https://travis-ci.org/jarwino/FaceTeX.svg?branch=travis
+[travis-img]: https://travis-ci.org/jarwino/FaceTeX.svg?branch=master
 [travis-btn]: https://travis-ci.org/jarwino/FaceTeX
 [heroku-img]: https://www.herokucdn.com/deploy/button.svg
 [heroku-btn]: https://heroku.com/deploy?template=https://github.com/jarwino/FaceTeX
