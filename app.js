@@ -9,7 +9,6 @@ var results = [];
 var options = {
   packages: ["amsmath", "amssymb"]
 };
-var http = require('http');
 var port = process.env.PORT || 5000;
 
 
