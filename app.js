@@ -66,11 +66,6 @@ login({
     if (err) return console.error(err);
 
     if (event.type === "message") {
-
-        // Early return if not a valid text string
-        if (!isValidLatex(event.body)) {
-          return;
-        }
         populateResults(event.body);
 
         console.log(results);
