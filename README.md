@@ -1,16 +1,27 @@
 # FaceTeX [![Build Status][travis-img]][travis-btn]
 
-[![Deploy][heroku-img]][heroku-btn]
-
 A tool that lets you communicate in LaTeX to your friends over Facebook chat. Simply add “Jaredbot Winowat” to your group chat and type `$yourLaTeXhere$` to get started.
 
-##Configuration
-If you want to do this with your own Facebook bot, please fork the repository and create a separate dummy account on Facebook. Replace the fields in `config.json` and run `node app.js`. After that you should be ready to go!
+## Instructions
+### Heroku 
 
-##Contributors
+[![Deploy][heroku-img]][heroku-btn]
+
+If you're deploying on Heroku, click the deploy button above then you only need to follow step 1 & 2 of the manual instructions
+
+### Manual
+
+1. Fork the repository and create a separate dummy account on Facebook
+2. Set the environment variables `FB_USERNAME` and `FB_PASSWORD` accordingly OR replace the fields in `config.json`
+3. Install dependencies with `npm install`
+4. Run with `npm start`
+5. After that you should be ready to go!
+
+## Contributors
 @webfreak7
 
-#### Thank you to `npm facebook-chat-api` and `npm install mathmode` for making the majority of this happen!
+## Credits
+Thank you to `facebook-chat-api` and `mathmode` for making the majority of this happen!
 
 [travis-img]: https://travis-ci.org/jarwino/FaceTeX.svg?branch=master
 [travis-btn]: https://travis-ci.org/jarwino/FaceTeX
