@@ -20,6 +20,13 @@ http.createServer(function(req, res) {
   res.end("");
 }).listen(process.env.PORT || 5000);
 
+//only use this if you are on free tier on heroku to keep bot from idling
+setInterval(function() {
+  http.get((process.env.HEROKU_INSTANCE || config.heroku), function(res) {
+    console.log("pong");
+  });
+}, 300000);
+//end 
 
 function isValidLatex(inputString) {
   return (inputString.length !== 1 &&

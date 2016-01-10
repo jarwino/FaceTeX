@@ -16,6 +16,10 @@
     "FB_PASSWORD": {
       "description": "Password for the bot.",
       "value": "verycomplicatedpassword"
+    },
+    "HEROKU_INSTANCE": {
+      "description": "Url for heroku dyno",
+      "value": "http://example.heroku.com"
     }
   }
 }
