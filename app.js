@@ -40,24 +40,29 @@ function extractLatex(inputString) {
 }
 
 function populateResults(inputString) {
-  var resultArray = inputString.split("");
+    var resultArray = inputString.split("");
+    var curr;
 
-  var inMiddle = false;
+    var inMiddle = false;
 
-  for (var i = 0; i < resultArray.length; i++) {
-    if (resultArray[i] === '$') {
+    for (var i = 0; i < resultArray.length; i++) {
+        if (resultArray[i] === '$') {
+            
+            if (!inMiddle) {
+                curr = "";
+            } else {
+                results.push(curr);
+            }
 
-      if (!inMiddle) {
-        results.push("");
-      }
-      inMiddle = !inMiddle;
-    } else {
-      if (inMiddle) {
-        results[results.length - 1] += resultArray[i];
-      }
+            inMiddle = !inMiddle; //flip switch
+
+        } else {
+            if (inMiddle) {
+                curr += resultArray[i];
+            }
+        }
+
     }
-
-  }
 
 }
 
