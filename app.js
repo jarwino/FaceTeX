@@ -22,7 +22,7 @@ http.createServer(function(req, res) {
 
 //only use this if you are on free tier on heroku to keep bot from idling
 setInterval(function() {
-  http.get((process.env.HEROKU_INSTANCE || config.heroku), function(res) {
+  http.get((process.env.HEROKU_INSTANCE || config.heroku_instance), function(res) {
     console.log("pong");
   });
 }, 300000);
